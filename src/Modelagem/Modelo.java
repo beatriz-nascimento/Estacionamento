@@ -3,7 +3,6 @@ package Modelagem;
 public class Modelo {
 
 	private String nome;
-
 	
 	public Modelo(String nome) {
 		super();

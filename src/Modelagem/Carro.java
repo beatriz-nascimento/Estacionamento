@@ -1,6 +1,7 @@
 package Modelagem;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Carro {
 
@@ -10,8 +11,9 @@ public class Carro {
     private LocalDateTime saida;
     private float valor;
 
-    public Carro(String modelo, String placa, LocalDateTime entrada, LocalDateTime saida) {
+    public Carro(Modelo modelo, String placa, LocalDateTime entrada) {
         super();
+        this.modelo = modelo;
         this.placa = placa;
         this.entrada = entrada;
     }
@@ -36,7 +38,7 @@ public class Carro {
         return entrada;
     }
 
-    public void setentrada(LocalDateTime entrada) {
+    public void SetEntrada(LocalDateTime entrada) {
         this.entrada = entrada;
     }
 
@@ -44,11 +46,11 @@ public class Carro {
         return saida;
     }
 
-    public void setsaida(LocalDateTime saida) {
+    public void SetSaida(LocalDateTime saida) {
         this.saida = saida;
     }
 
-    public float getvalor() {
+    public float GetValor() {
         return valor;
     }
 
