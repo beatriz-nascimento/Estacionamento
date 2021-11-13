@@ -16,6 +16,7 @@ public class Carro {
         this.modelo = modelo;
         this.placa = placa;
         this.entrada = entrada;
+        this.modelo = modelo;
     }
 
     public Modelo getModelo() {
@@ -34,8 +35,10 @@ public class Carro {
         this.placa = placa;
     }
 
-    public LocalDateTime getEntrada() {
-        return entrada;
+    public String getEntrada(LocalDateTime entrada) {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy H:m.s");
+
+        return entrada.format(formato);
     }
 
     public void SetEntrada(LocalDateTime entrada) {
@@ -60,7 +63,7 @@ public class Carro {
 
     @Override
     public String toString() {
-        return "Carro [modelo=" + modelo + ", placa=" + placa + ", entrada=" + entrada + ", saida=" + saida + ", valor="
+        return "Carro [modelo=" + modelo + ", placa=" + placa + ", entrada=" + getEntrada(entrada) + ", saida=" + saida + ", valor="
                 + valor + "]";
     }
 
