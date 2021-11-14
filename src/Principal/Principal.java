@@ -19,8 +19,10 @@ public class Principal {
 
 	// eventualmente outros atributos static
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		int opcao;
+		String marcaSelecionada;
 		// ctrl + space
 		
 		// criando pra teste
@@ -37,52 +39,74 @@ public class Principal {
 			System.out.println("\n selecione a opção desejada: ");
 			opcao = scanner.nextInt();
 			
-			switch (opcao) {
-			case 0:
-				System.out.println("\n==> *cadastrar entrada*\n");				
-				// printa as marcas e modelos e pega hora de entrada
-				System.out.println("\n==> selecione a marca desejada, se não estiver na lista digite 0 para adicionar\n");
-				int intm = scanner.nextInt();
-				if (intm == 0) {
-					for (Marca marca : marcas) {
+			switch (opcao)
+			{
+				case 0:
+					System.out.println("\n==> *cadastrar entrada*\n");				
+					// printa as marcas e modelos e pega hora de entrada
+					System.out.println("\n==> selecione a marca desejada, se não estiver na lista digite 0 para adicionar\n");
+					
+					for (Marca marca : marcas)
+					{
 						System.out.println(marca.getNome());
-					}				
-					cadastrarMarca();
+					}
+					
+					int posicaoMarca = scanner.nextInt();
+					
+					if (posicaoMarca == 0)
+					{
+						cadastrarMarca();
+					}
+					else
+					{
+						//entra e escolher modelo
+						marcaSelecionada = marcas.get(posicaoMarca-1).getNome();
+						
+						if (marcaSelecionada != null)
+						{
+							System.out.println("lista de modelos da marca" + marcaSelecionada.toLowerCase() + ":");
+							
+							for (int i = 0; i < marcas.get(posicaoMarca-1).getModelos().size(); i++)
+							{
+								System.out.println((i+1) + " - " + marcas.get(posicaoMarca-1).getModelos().get(i));
+							}
+						/*System.out.println("\n==> selecione a marca para adicionar o modelo\n");
+						int m = 0;
+						for (Marca marca : marcas) {
+							System.out.println("   " + m + " - " + marca.getNome());
+							m++;
+						cadastrarModelo(int posicao);*/
+						}
+					
+	
+					}
+					System.out.println("cheguei até aqui");
 					break;
-				}
-				else {
-					//entra e escolher modelo
-				}
+					
+				case 1:
+					// pega o numero da vaga em vagas do carro
+					// pega a hora de saida com LocalDateTime.now()
+					// colocar carro no histórico
+					historico.add(vagas[0]);  // coloca o carro da vaga 0 que saiu no histórico
+					vagas[0] = null; // libera a vaga
+					// calcula valor
+					break;
+					
+				case 2:
+					// mostra a ocupação do estacionamento, printa vetor vagas com vaga ou ocupada
+					for (int i = 0; i < 100; i++)
+					{
+						System.out.println((i+1) + ": " + vagas[i]);
+					}
+					break;
+					
+				case 3:
+					//mostrar relatório gerencial consolidado
+					// solicita a data de entrada
+					break;
+			}
 				
-				/*System.out.println("\n==> selecione a marca para adicionar o modelo\n");
-				int m = 0;
-				for (Marca marca : marcas) {
-					System.out.println("   " + m + " - " + marca.getNome());
-					m++;
-				cadastrarModelo();
-				}*/
-				break;
-			case 1:
-				// pega o numero da vaga em vagas do carro
-				// pega a hora de saida com LocalDateTime.now()
-				// colocar carro no histórico
-				historico.add(vagas[0]);  // coloca o carro da vaga 0 que saiu no histórico
-				vagas[0] = null; // libera a vaga
-				// calcula valor
-				break;
-			case 2:
-				// mostra a ocupação do estacionamento, printa vetor vagas com vaga ou ocupada
-				for (int i = 0; i < 100; i++) {
-					System.out.println((i+1) + ": " + vagas[i]);
-				}
-				break;
-			case 3:
-				//mostrar relatório gerencial consolidado
-				// solicita a data de entrada
-				}
-				break;			
-				
-			} while (opcao != 0);
+		} while (opcao != 999);
 				
 		
 		
@@ -92,38 +116,50 @@ public class Principal {
 		// chamar metodos static que correspondam as opcoes de menu
 	}
 
-	private static void entradaCarro() {
+	private static void entradaCarro()
+	{
 		// criar o carro e cadastra-lo no vetor na posicao correta
 	}
 
-	private static float saidaCarro() {
+	private static float saidaCarro()
+	{
 		float preco = 0;
 		// logica para calcular preco do estacionamento e coloca-lo no historico
 		return preco;
 	}
 	
-	private static void cadastrarMarca() {
+	private static void cadastrarMarca()
+	{
+		String nomeMarca, nomeModelo;
+		
 		System.out.println("\n==> modelos disponíveis\n");
-		String nome;
 		
-		scanner.nextLine();
 		System.out.print("   marca: ");
-		nome = scanner.nextLine();
+		nomeMarca = scanner.next();
 		
-		Marca marca = new Marca(nome);
+		Marca marca = new Marca(nomeMarca);
 		marcas.add(marca);
+		
+		System.out.println("\n==> cadastro de modelo\n");
+		
+		System.out.print("   modelo: ");
+		nomeModelo = scanner.next();
+		
+		Modelo modelos = new Modelo(nomeModelo);
+		marca.addModelo(modelos);
 	}
 	
-	private static void cadastrarModelo() {
+	private static void cadastrarModelo(int posicao)
+	{
+		String nomeModelo;
+		
 		System.out.println("\n==> cadastro de modelo\n");
-		String nome;
 		
-		scanner.nextLine();
 		System.out.print("   modelo: ");
-		nome = scanner.nextLine();
+		nomeModelo = scanner.next();
 		
-		Modelo modelos = new Modelo(nome);
-		//marcas.add(modelos);
+		Modelo modelos = new Modelo(nomeModelo);
+		marcas.get(posicao).addModelo(modelos);
 	}
 
 	// outros métodos static conforme especificacao do trabalho e necessidades de

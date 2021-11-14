@@ -2,6 +2,7 @@ package Modelagem;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Carro {
 
@@ -16,6 +17,12 @@ public class Carro {
         this.placa = placa;
         this.entrada = entrada;
         this.modelo = modelo;
+    }
+    
+    public String DataFormatada (LocalDateTime dt) {
+    	DateTimeFormatter formatoData = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
+    	
+    	return dt.format(formatoData);
     }
 
     public Modelo getModelo() {
