@@ -13,7 +13,6 @@ public class Carro {
 
     public Carro(Modelo modelo, String placa, LocalDateTime entrada) {
         super();
-        this.modelo = modelo;
         this.placa = placa;
         this.entrada = entrada;
         this.modelo = modelo;
