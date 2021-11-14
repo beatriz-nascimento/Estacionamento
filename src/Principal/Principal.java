@@ -32,23 +32,34 @@ public class Principal {
 			System.out.println("\n==> menu\n");
 			System.out.println("   0 - cadastrar entrada do carro");
 			System.out.println("   1 - efetuar uma saida de carro");
-			System.out.println("   2 - cadastrar marca");
-			System.out.println("   3 - cadastrar modelo");
-			System.out.println("   4 - mostrar ocupação do estacionamento");
-			System.out.println("   5 - mostrar relatório gerencial consolidado");
+			System.out.println("   2 - mostrar ocupação do estacionamento");
+			System.out.println("   3 - mostrar relatório gerencial consolidado");
 			opcao = scanner.nextInt();
 			
 			switch (opcao) {
 			case 0:
-				System.out.println("\n==> marcas\n");
-				System.out.println("   0 - adicionar marca");
-				System.out.println("   1 - marca 1");
-				System.out.println("   2 - marca 2");
-				System.out.println("   3 - marca 3");
-				opcao = scanner.nextInt();
-				// ao escolher marca e modelo pega a hora de entrada e inclui o carro no estacionamento da menor vaga
-				// se for marca nova vai pro case 2
-				// se for modelo novo vai pro case 3
+				System.out.println("\n==> *cadastrar entrada*\n");				
+				// printa as marcas e modelos e pega hora de entrada
+				System.out.println("\n==> selecione a marca desejada, se não estiver na lista digite 0 para adicionar\n");
+				int intm = scanner.nextInt();
+				if (intm == 0) {
+					for (Marca marca : marcas) {
+						System.out.println(marca.getNome());
+					}				
+					cadastrarMarca();
+					break;
+				}
+				else {
+					//entra e escolher modelo
+				}
+				
+				/*System.out.println("\n==> selecione a marca para adicionar o modelo\n");
+				int m = 0;
+				for (Marca marca : marcas) {
+					System.out.println("   " + m + " - " + marca.getNome());
+					m++;
+				cadastrarModelo();
+				}*/
 				break;
 			case 1:
 				// pega o numero da vaga em vagas do carro
@@ -59,31 +70,16 @@ public class Principal {
 				// calcula valor
 				break;
 			case 2:
-				System.out.println("\n==> marcas cadastradas\n");
-				for (Marca marca : marcas) {
-					System.out.println(marca.getNome());
-				}
-				cadastrarMarca();
-				break;
-			case 3:
-				System.out.println("\n==> selecione a marca para adicionar o modelo\n");
-				int m = 0;
-				for (Marca marca : marcas) {
-					System.out.println("   " + m + " - " + marca.getNome());
-					m++;
-				cadastrarModelo();
-				}
-				break;			
-			case 4:
 				// mostra a ocupação do estacionamento, printa vetor vagas com vaga ou ocupada
 				for (int i = 0; i < 100; i++) {
 					System.out.println((i+1) + ": " + vagas[i]);
 				}
 				break;
-			case 5:		
+			case 3:
 				//mostrar relatório gerencial consolidado
 				// solicita a data de entrada
 				}
+				break;			
 				
 			} while (opcao != 0);
 				
@@ -106,7 +102,7 @@ public class Principal {
 	}
 	
 	private static void cadastrarMarca() {
-		System.out.println("\n==> cadastro de marca\n");
+		System.out.println("\n==> modelos disponíveis\n");
 		String nome;
 		
 		scanner.nextLine();
