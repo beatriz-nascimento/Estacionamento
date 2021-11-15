@@ -41,13 +41,13 @@ public class Carro {
         this.placa = placa;
     }
 
-    public String getEntrada(LocalDateTime entrada) {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy H:m.s");
-
-        return entrada.format(formato);
+    public LocalDateTime getEntrada() {
+        // DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy H:m.s");
+        // return entrada.format(formato);
+        return entrada;
     }
 
-    public void SetEntrada(LocalDateTime entrada) {
+    public void setEntrada(LocalDateTime entrada) {
         this.entrada = entrada;
     }
 
@@ -55,11 +55,11 @@ public class Carro {
         return saida;
     }
 
-    public void SetSaida(LocalDateTime saida) {
+    public void setSaida(LocalDateTime saida) {
         this.saida = saida;
     }
 
-    public float GetValor() {
+    public float getValor() {
         return valor;
     }
 
@@ -69,8 +69,8 @@ public class Carro {
 
     @Override
     public String toString() {
-        return "Carro [modelo=" + modelo + ", placa=" + placa + ", entrada=" + getEntrada(entrada) + ", saida=" + saida + ", valor="
-                + valor + "]";
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy H:m.s");
+        return modelo + ", placa: " + placa + ", entrada: " + entrada.format(formato) + (saida == null? "" : ", saida: " + saida.format(formato));
     }
 
 

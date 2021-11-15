@@ -21,7 +21,7 @@ public class Modelo {
 
 	@Override
 	public String toString() {
-		return "Modelo [nome=" + nome + "]";
+		return "Modelo: " + nome;
 	}
 
 }
