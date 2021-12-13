@@ -9,19 +9,13 @@ public class Modelo {
 		this.nome = nome;
 	}
 
-	
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 
 	@Override
 	public String toString() {
-		return "Modelo: " + nome;
+		return "Modelo: " + this.nome;
 	}
 
 }
