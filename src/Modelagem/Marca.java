@@ -18,16 +18,10 @@ public class Marca {
 	}
 	
 	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
+		return this.nome;
 	}
 	
 	public ArrayList<Modelo> getModelos() {
-		return modelos;
+		return this.modelos;
 	}
-
-
 }
